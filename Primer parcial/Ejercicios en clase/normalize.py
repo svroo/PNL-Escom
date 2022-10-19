@@ -61,10 +61,9 @@ def normalize(path = './../EXCELSIOR_100_files/'):
         lemmas_list = list(lemmas.items())
         print('\nThese are some entries in the lemmas dictionary\n []'.format)
     
-    for word in final_words:
-        if word in lemmas.keys():
-            lemmatized_text.append(lemmas[word])
-        else:
-            lemmatized_text.append(word)
-    print('lemmatize runs well')
-    return lemmatized_text
+def get_text(path):
+    """Read text from a file, normalizing whitespace and stripping HTLM markup."""
+    text = open(file= path, encoding='utf-8').read()
+    text = re.sub('\s+', ' ', text)
+    text = re.sub(r'<.*?>', ' ', text)
+    return text
