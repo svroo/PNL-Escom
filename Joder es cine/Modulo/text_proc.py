@@ -104,7 +104,7 @@ def obtener_y (path = str(), file_pos = list(), file_xml = list()):
         num = aux[0]
         comp = str(num) + '.xml'
         if comp in file_xml:
-            file_of_x.append(file)
+            file_of_x.append(obtener_text(path,file))
             value_of_y.append(get_rank(path, comp))
 
 
