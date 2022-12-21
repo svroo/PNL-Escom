@@ -1,16 +1,16 @@
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.naive_bayes import GaussianNB
-from sklearn.cluster import KMeans
+# from sklearn.naive_bayes import MultinomialNB
+# from sklearn.naive_bayes import GaussianNB
+# from sklearn.cluster import KMeans
 import pandas as pd
-from random import shuffle
+# from random import shuffle
 import numpy as np
 import os 
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.feature_extraction.text import TfidfTransformer
+# from sklearn.feature_extraction.text import CountVectorizer
+# from sklearn.feature_extraction.text import TfidfTransformer
 from nltk.corpus import stopwords
-from nltk.corpus import stopwords 
-from nltk.tokenize import word_tokenize
-import nltk
+# from nltk.corpus import stopwords 
+# from nltk.tokenize import word_tokenize
+# import nltk
 import re
 import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import XMLParser
@@ -87,3 +87,25 @@ def get_rank (path = str(), file = str(), llave = 'rank'):
         att = root.attrib
     
     return int(att[llave])
+
+def obtener_y (path = str(), file_pos = list(), file_xml = list()):
+    """
+    Funcion hecha para obtener el mismo número de archivos xml y de review.pos, regresa el valor del archivo xml.
+    Retorna una lista.
+    path : Dirección donde se encuentra el corpus
+    file_pos : lista con los nombres del archivo review.pos 
+    xml_file : lista con los nombres del archivo xml contenidas en el corpus
+    """
+    file_of_x = list()
+    value_of_y = list()
+
+    for file in file_pos:
+        aux = file.split('.')
+        num = aux[0]
+        comp = str(num) + '.xml'
+        if comp in file_xml:
+            file_of_x.append(file)
+            value_of_y.append(get_rank(path, comp))
+
+
+    return file_of_x, value_of_y
